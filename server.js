@@ -40,29 +40,27 @@ class Contenedor {
 
 arrayFull();
 */
-const productos = new Router()
+const rutaProductos = new Router()
 
-productos.use(express.json())
-productos.use(express.urlencoded({ extended: true }))
+rutaProductos.use(express.json())
+rutaProductos.use(express.urlencoded({ extended: true }))
 
-const aMascotas = []
+const productos = []
 
-productos.get('/', (req, res) => {
-    res.json(aMascotas)
+rutaProductos.get('/', (req, res) => {
+    res.json(productos)
 })
 
-productos.post('/', (req, res) => {
+rutaProductos.post('/', (req, res) => {
     console.log('ingresa al post');
-    aMascotas.push(req.body)
+    productos.push(req.body)
     res.json(req.body)
 });
 
-app.use('/productos', productos)
+app.use('/productos', rutaProductos)
 
 /* -----------api?----------*/
 async function rutas () {
-
-    const todoElArray = await arrayFull(); 
     
     app.get('/', (req, res) => {
         res.send('<h1 style="color:red;">Desafio Express! acceda a /productos y /productoRandom</h1>')
